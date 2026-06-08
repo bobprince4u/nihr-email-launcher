@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NIHR Email Launcher — Leeds BRC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #003865;
+    --navy2: #00527a;
+    --gold: #c8a951;
+    --bg: #eff4f9;
+    --white: #ffffff;
+    --border: #c8d8e8;
+    --text: #1a1a2e;
+    --muted: #5a6a7e;
+    --success: #15803d;
+  }
+  body {
+    font-family: "DM Sans", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 40px 16px 60px;
+  }
+  .page-header {
+    max-width: 700px;
+    margin: 0 auto 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .header-left h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 3px;
+  }
+  .header-left p {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: #eef4fa;
+    color: var(--navy);
+    border: 1.5px solid #b0cae0;
+    white-space: nowrap;
+  }
+  .cards {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,56,101,0.07);
+  }
+  .card-head {
+    background: var(--navy);
+    padding: 18px 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .card-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .card-icon svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .card-head-text {}
+  .card-num {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+  .card-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+  }
+  .card-body {
+    padding: 22px 28px;
+  }
+  .preview-box {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-height: 130px;
+    overflow: hidden;
+    position: relative;
+  }
+  .preview-box::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 48px;
+    background: linear-gradient(transparent, #f8fafc);
+  }
+  .preview-subject {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .send-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .send-btn:hover { background: var(--navy2); }
+  .send-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  .hint {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 10px;
+    text-align: center;
+  }
+  .hint strong { color: var(--navy); }
+  .page-footer {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .page-footer a { color: var(--navy); text-decoration: none; font-weight: 500; }
+  @media (max-width: 560px) {
+    .card-head, .card-body { padding-left: 18px; padding-right: 18px; }
+    .page-header { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="header-left">
+    <h1>NIHR Annual Reporting</h1>
+    <p>Email launcher — Leeds BRC</p>
+  </div>
+  <span class="badge">Kevin Ohuchukwu</span>
+</header>
+
+<div class="cards">
+
+  <!-- EMAIL 1 -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+      </div>
+      <div class="card-head-text">
+        <div class="card-num">Email 1</div>
+        <div class="card-title">ACD / Theme objectives &amp; impact stories</div>
+        <div class="card-sub">Subject: ACD input needed for NIHR annual reporting for your workstream</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="preview-box">
+        <div class="preview-subject">Email preview</div>
+        Dear [Name],<br><br>
+        The 2025/26 annual NIHR reporting cycle has started and there are a number of elements that need input from your Theme.<br><br>
+        As part of our reporting, we must update for Progress against Theme objectives, and Impact stories. Please find attached Theme objectives 25_26 and the NIHR Impact story template...
+      </div>
+      <a class="send-btn" id="btn1" href="#" onclick="openEmail1(event)">
+        <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        Open in email app
+      </a>
+      <p class="hint">Your email app opens pre-filled. Just change <strong>Dear [Name]</strong>, add the recipient, attach files &amp; send.</p>
+    </div>
+  </div>
+
+  <!-- EMAIL 2 -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 10h18M3 14h18M10 3v18M14 3v18M3 6a3 3 0 013-3h12a3 3 0 013 3v12a3 3 0 01-3 3H6a3 3 0 01-3-3V6z"/></svg>
+      </div>
+      <div class="card-head-text">
+        <div class="card-num">Email 2</div>
+        <div class="card-title">University of Leeds — BRC-funded staff spreadsheet</div>
+        <div class="card-sub">Subject: University of Leeds input needed for NIHR annual reporting</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="preview-box">
+        <div class="preview-subject">Email preview</div>
+        Dear [Name],<br><br>
+        I hope you are well. Kindly disregard the earliest mail.<br><br>
+        As part of our NIHR annual reporting requirements, we are required to report on all staff funded (even if only fractionally) by the BRC. Please could you fully complete the attached spreadsheet for University of Leeds staff...
+      </div>
+      <a class="send-btn" id="btn2" href="#" onclick="openEmail2(event)">
+        <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        Open in email app
+      </a>
+      <p class="hint">Your email app opens pre-filled. Just change <strong>Dear [Name]</strong>, add the recipient, attach the spreadsheet &amp; send.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="page-footer">
+  Leeds Biomedical Research Centre &nbsp;·&nbsp; NIHR &nbsp;·&nbsp; Queries:
+  <a href="mailto:k.o.ohuchukwu@leeds.ac.uk">k.o.ohuchukwu@leeds.ac.uk</a>
+</div>
+
+<script>
+function openEmail1(e) {
+  e.preventDefault();
+  var subject = encodeURIComponent('ACD input needed for NIHR annual reporting for your workstream');
+  var body = encodeURIComponent(
+    'Dear [Name],\n\n' +
+    'The 2025/26 annual NIHR reporting cycle has started and there are a number of elements that need input from your Theme.\n\n' +
+    'As part of our reporting, we must update for:\n' +
+    '  \u2022 Progress against Theme objectives, and\n' +
+    '  \u2022 Impact stories\n\n' +
+    'Therefore, please find attached:\n' +
+    '  \u2022 Theme objectives 25_26 \u2013 please update columns Q to U and return to me by 1st May\n' +
+    '  \u2022 NIHR Impact story template \u2013 we would love to see Impact stories from your Theme and include one in our annual report. If you have one, please can a draft of this also be with me by 1st May.\n\n' +
+    'Please don\'t hesitate to reach out with any questions.\n\n' +
+    'Thank you for your assistance.\n\n' +
+    'Kind Regards,\n' +
+    'Kevin Ohuchukwu\n' +
+    'Information, Impact and Reporting Coordinator\n' +
+    'NIHR Leeds Biomedical Research Centre\n' +
+    'University of Leeds\n' +
+    'in partnership with\n' +
+    'Leeds Teaching Hospitals NHS Trust and University of York'
+  );
+  window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
+}
+
+function openEmail2(e) {
+  e.preventDefault();
+  var subject = encodeURIComponent('University of Leeds input needed for NIHR annual reporting');
+  var body = encodeURIComponent(
+    'Dear [Name],\n\n' +
+    'I hope you are well. Kindly disregard the earliest mail.\n\n' +
+    'As part of our NIHR annual reporting requirements, we are required to report on all staff funded (even if only fractionally) by the BRC.\n\n' +
+    'Please could you fully complete the attached spreadsheet for University of Leeds staff that are supported by BRC funding.\n\n' +
+    'NIHR guidance states:\n\n' +
+    'NIHR Infrastructure Centre Staff:\n' +
+    'This includes all staff who have all or part of their salary funded through the NIHR Biomedical Research Centre Infrastructure award. These may include, but not limited to, staff leading and undertaking research, senior researchers, research assistants, clinical and clinical support staff, scientific, laboratory and technical staff, project facilitators, practitioners, data managers, administrators, research leadership, management and governance staff, other RRDN staff and any other staff paid from the NIHR Infrastructure award as a "research cost".\n\n' +
+    'Notes:\n' +
+    '* First and surname are optional. We do not use these identifiable data so if you would like to anonymise your data, you\'re welcome to do so.\n' +
+    '* Full-time equivalent (FTE): the proportion of full-time hours a staff member works for the NIHR infrastructure during the reporting year. If a staff member is in post for six months working full time hours, this would equate to 0.5 FTE. If a staff member works approximately half the equivalent full-time hours for the entire year this would also equate to 0.5 FTE.\n' +
+    '* Professional Background: If Allied Healthcare Professional (AHP), Other Healthcare Professional (OHP) or Not a Healthcare Professional (NHP) are selected, further information on professional background is required in the next column.\n\n' +
+    'The information you provide will support the accuracy of our NIHR submission and ensure our staffing data is up to date.\n\n' +
+    'Please return the completed sheet by 8th May.\n\n' +
+    'Thank you very much for your assistance and please don\'t hesitate to reach out with any questions.\n\n' +
+    'Kind Regards,\n' +
+    'Kevin Ohuchukwu\n' +
+    'Information, Impact and Reporting Coordinator\n' +
+    'NIHR Leeds Biomedical Research Centre\n' +
+    'University of Leeds\n' +
+    'in partnership with\n' +
+    'Leeds Teaching Hospitals NHS Trust and University of York'
+  );
+  window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
+}
+</script>
+</body>
+</html>
