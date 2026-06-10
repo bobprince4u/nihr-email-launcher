@@ -1,6 +1,6 @@
 # NIHR Email Launcher — Leeds BRC
 
-A lightweight standalone web page that opens pre-filled emails in your default email app with a single click. Built for Kevin Ohuchukwu, Information, Impact and Reporting Coordinator, NIHR Leeds Biomedical Research Centre.
+A lightweight standalone web page that opens pre-filled emails in your default email app with a single click. Built for NIHR Leeds Biomedical Research Centre, Information, Impact and Reporting Coordinator, NIHR Leeds Biomedical Research Centre.
 
 ---
 
